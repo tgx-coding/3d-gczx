@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桂城中學全景在線查看</title>
+    
+    <!-- Photo Sphere Viewer CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css" />
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Language Detection Script -->
+    <script src="js/language.js"></script>
+    
+    <!-- App Bar -->
+    <header class="app-bar">
+        <div class="app-bar-content">
+            <img src="logo.png" alt="桂城中學 Logo" class="app-logo">
+            <h1>桂城中學全景查看器</h1>
+            <div class="power-by">
+                <span>Powered by <a href="https://photo-sphere-viewer.js.org/" target="_blank">Photo Sphere Viewer</a></span>
+                <span>Designed by TGX Coding</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Side Panel -->
+        <aside class="side-panel">
+            <div class="panel-header">
+                <h2>圖片列表</h2>
+                <button id="refresh-btn" class="icon-button" title="刷新列表">
+                    <span class="material-icons">refresh</span>
+                </button>
+            </div>
+            
+            <div class="image-list" id="image-list">
+                <div class="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>載入圖片中...</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Viewer Container -->
+        <section class="viewer-section">
+            <div id="viewer" class="panorama-viewer"></div>
+            
+            <!-- Floating Action Button -->
+            <button id="fullscreen-btn" class="fab" title="全螢幕">
+                <span class="material-icons">fullscreen</span>
+            </button>
+            
+            <!-- Info Panel -->
+            <div class="info-panel" id="info-panel">
+                <div class="info-content">
+                    <h3 id="current-image-name">請選擇一張全景圖</h3>
+                    <p id="current-image-info">從左側列表中選擇要查看的全景圖片</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Snackbar -->
+    <div class="snackbar" id="snackbar">
+        <span class="snackbar-text"></span>
+        <button class="snackbar-action">關閉</button>
+    </div>
+
+    <!-- Import Map -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
+            "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js"
+        }
+    }
+    </script>
+
+    <!-- JavaScript -->
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>
