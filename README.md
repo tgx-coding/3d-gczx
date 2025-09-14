@@ -3,7 +3,7 @@
 
 ## Present by [TGX-Coding](https://github.com/tgx-coding)
 
-![](https://postimg.cc/68HVFWvr)
+[![TGX-00000.png](https://i.postimg.cc/7L4BGbPW/TGX-00000.png)](https://postimg.cc/68HVFWvr)
 
 ## A simple website to watch Guicheng Middle School's 3D photo.
 
