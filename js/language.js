@@ -9,6 +9,10 @@ class LanguageManager {
                 imageList: '圖片列表',
                 refreshList: '刷新列表',
                 loadingImages: '載入圖片中...',
+                loadingProgress: '正在檢查圖片',
+                loadingComplete: '載入完成',
+                checkingImages: '檢查圖片中',
+                foundImages: '找到 {count} 張圖片',
                 noImages: '無圖片',
                 noImagesDesc: '請將全景圖片放置在 files 文件夾中',
                 supportedFormats: '支援格式：JPG、PNG、WebP',
@@ -34,6 +38,10 @@ class LanguageManager {
                 imageList: '图片列表',
                 refreshList: '刷新列表',
                 loadingImages: '加载图片中...',
+                loadingProgress: '正在检查图片',
+                loadingComplete: '加载完成',
+                checkingImages: '检查图片中',
+                foundImages: '找到 {count} 张图片',
                 noImages: '无图片',
                 noImagesDesc: '请将全景图片放置在 files 文件夹中',
                 supportedFormats: '支持格式：JPG、PNG、WebP',
@@ -164,7 +172,15 @@ class LanguageManager {
         return `
             <div class="loading-state">
                 <div class="loading-spinner"></div>
-                <p>${this.getText('loadingImages')}</p>
+                <p id="loading-text">${this.getText('loadingImages')}</p>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="progress-current">0</span> / <span id="progress-total">0</span>
+                    </div>
+                </div>
             </div>
         `;
     }

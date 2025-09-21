@@ -71,6 +71,8 @@ class PanoramaViewer {
     }
 
     async getImageList() {
+        let possibleImages = [];
+        
         try {
             // 首先嘗試從 JSON 配置文件載入圖片列表
             const response = await fetch('images.json');
@@ -78,8 +80,12 @@ class PanoramaViewer {
                 const imageNames = await response.json();
                 const existingImages = [];
                 
+                // 更新進度：開始檢查 JSON 中的圖片
+                this.updateProgress(0, imageNames.length, this.languageManager.getText('checkingImages'));
+                
                 // 檢查每個圖片是否存在
-                for (const imageName of imageNames) {
+                for (let i = 0; i < imageNames.length; i++) {
+                    const imageName = imageNames[i];
                     try {
                         const imageResponse = await fetch(`files/${encodeURIComponent(imageName)}`, { method: 'HEAD' });
                         if (imageResponse.ok) {
@@ -92,9 +98,15 @@ class PanoramaViewer {
                     } catch (error) {
                         console.log(`圖片不存在: ${imageName}`);
                     }
+                    
+                    // 更新進度
+                    this.updateProgress(i + 1, imageNames.length, 
+                        this.languageManager.getText('checkingImages'));
                 }
                 
                 if (existingImages.length > 0) {
+                    this.updateProgress(imageNames.length, imageNames.length, 
+                        this.languageManager.getText('foundImages').replace('{count}', existingImages.length));
                     return existingImages;
                 }
             }
@@ -103,7 +115,7 @@ class PanoramaViewer {
         }
         
         // 備用方案：使用預定義的圖片列表
-        const possibleImages = [
+        possibleImages = [
             // 你的實際圖片檔案名稱
             '七彩径.JPG',
             '孔子像.JPG', 
@@ -132,8 +144,12 @@ class PanoramaViewer {
 
         const existingImages = [];
         
+        // 更新進度：開始檢查預設圖片列表
+        this.updateProgress(0, possibleImages.length, this.languageManager.getText('checkingImages'));
+        
         // 檢查圖片是否存在
-        for (const imageName of possibleImages) {
+        for (let i = 0; i < possibleImages.length; i++) {
+            const imageName = possibleImages[i];
             try {
                 const response = await fetch(`files/${encodeURIComponent(imageName)}`, { method: 'HEAD' });
                 if (response.ok) {
@@ -147,9 +163,36 @@ class PanoramaViewer {
                 // 圖片不存在，忽略
                 console.log(`圖片不存在: ${imageName}`);
             }
+            
+            // 更新進度
+            this.updateProgress(i + 1, possibleImages.length, 
+                this.languageManager.getText('checkingImages'));
         }
 
+        // 完成檢查
+        this.updateProgress(possibleImages.length, possibleImages.length, 
+            this.languageManager.getText('foundImages').replace('{count}', existingImages.length));
+
         return existingImages;
+    }
+
+    // 更新加載進度
+    updateProgress(current, total, message = null) {
+        const progressFill = document.getElementById('progress-fill');
+        const progressCurrent = document.getElementById('progress-current');
+        const progressTotal = document.getElementById('progress-total');
+        const loadingText = document.getElementById('loading-text');
+
+        if (progressFill && progressCurrent && progressTotal) {
+            const percentage = total > 0 ? (current / total) * 100 : 0;
+            progressFill.style.width = `${percentage}%`;
+            progressCurrent.textContent = current;
+            progressTotal.textContent = total;
+        }
+
+        if (loadingText && message) {
+            loadingText.textContent = message;
+        }
     }
 
     renderImageList() {
