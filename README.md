@@ -13,4 +13,6 @@
 
 ## Powered By [Photo Sphere Viewer](https://github.com/mistic100/Photo-Sphere-Viewer)
 
+## Deploy on [vercel](https://vercel.com/)
+
 ## Coded by [whitebearovo(aka.Mahiru Shiina)](https://github.com/whitebearovo/) Made with Love❤️
