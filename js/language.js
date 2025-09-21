@@ -173,6 +173,9 @@ class LanguageManager {
             <div class="loading-state">
                 <div class="loading-spinner"></div>
                 <p id="loading-text">${this.getText('loadingImages')}</p>
+                <div class="progress-percentage">
+                    <span id="progress-percentage">0%</span>
+                </div>
                 <div class="progress-container">
                     <div class="progress-bar">
                         <div class="progress-fill" id="progress-fill"></div>

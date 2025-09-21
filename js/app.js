@@ -181,6 +181,7 @@ class PanoramaViewer {
         const progressFill = document.getElementById('progress-fill');
         const progressCurrent = document.getElementById('progress-current');
         const progressTotal = document.getElementById('progress-total');
+        const progressPercentage = document.getElementById('progress-percentage');
         const loadingText = document.getElementById('loading-text');
 
         if (progressFill && progressCurrent && progressTotal) {
@@ -188,6 +189,11 @@ class PanoramaViewer {
             progressFill.style.width = `${percentage}%`;
             progressCurrent.textContent = current;
             progressTotal.textContent = total;
+            
+            // 更新百分比顯示
+            if (progressPercentage) {
+                progressPercentage.textContent = `${Math.round(percentage)}%`;
+            }
         }
 
         if (loadingText && message) {

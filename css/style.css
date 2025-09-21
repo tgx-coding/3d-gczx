@@ -355,6 +355,23 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+/* Progress Percentage */
+.progress-percentage {
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.progress-percentage span {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--md-sys-color-primary);
+    background-color: rgba(109, 76, 65, 0.1);
+    padding: 4px 12px;
+    border-radius: var(--md-sys-shape-corner-sm);
+    border: 1px solid rgba(109, 76, 65, 0.2);
+}
+
 /* Progress Bar */
 .progress-container {
     width: 100%;
